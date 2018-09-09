@@ -3,15 +3,25 @@ package ufc.com.webservice.dominios;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+
 @Document
 public class Usuario {
 
     @Id
     private String id;
+    @NotNull
     private String nome;
+    @NotNull
     private String email;
+    @NotNull
     private String login;
+    @NotNull
     private String senha;
+
+    private List<AmbienteVirtual> virtualList =  new ArrayList<>();
 
     public Usuario(String nome, String email, String login, String senha) {
         this.nome = nome;
@@ -58,6 +68,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<AmbienteVirtual> getVirtualList() {
+        return virtualList;
+    }
+
+    public void setVirtualList(List<AmbienteVirtual> virtualList) {
+        this.virtualList = virtualList;
     }
 
     @Override

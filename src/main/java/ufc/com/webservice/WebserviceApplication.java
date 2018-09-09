@@ -27,7 +27,7 @@ public class WebserviceApplication  implements CommandLineRunner {
         System.out.println("DELETANTO TODOS OS USUARIOS");
         usuarioRepositorio.deleteAll();
         System.out.println("ADICIONANDO USUARIOS");
-        usuarioRepositorio.save(new Usuario("Andreazo Silva","andreazo@gmail.com","andre","123321a"));
+       Usuario u =  usuarioRepositorio.save(new Usuario("Andreazo Silva","andreazo@gmail.com","andre","123321a"));
         usuarioRepositorio.save(new Usuario("Anderson Silva","anderson@gmail.com","ander","123321a"));
         usuarioRepositorio.save(new Usuario("Biricutico Silva","biricutico@gmail.com","biri","123321a"));
 
@@ -40,11 +40,14 @@ public class WebserviceApplication  implements CommandLineRunner {
              ambienteVirtualRepositorio.deleteAll();
         MetaDados metaDados = new MetaDados(100.0,23.0,89.0);
         AmbienteVirtual ambienteVirtual = new AmbienteVirtual("Alaska","AMBIENTE GELADO",metaDados);
+       u.getVirtualList().add(ambienteVirtual);
+       usuarioRepositorio.save(u);
         ambienteVirtualRepositorio.save(ambienteVirtual);
 
-        ambienteVirtualRepositorio.findAll().stream().forEach(a ->{
-            System.out.println(a.getMetaDados().getTemperatura());
-        });
+        Usuario us = usuarioRepositorio.findByEmail("andreazo@gmail.com");
+      System.out.println(us);
+        System.out.println(us.getVirtualList().get(0).getDescricao());
+
 
     }
 }
