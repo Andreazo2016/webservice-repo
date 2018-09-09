@@ -48,6 +48,5 @@ public class WebserviceApplication  implements CommandLineRunner {
       System.out.println(us);
         System.out.println(us.getVirtualList().get(0).getDescricao());
 
-
     }
 }
